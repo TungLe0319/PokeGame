@@ -34,7 +34,9 @@ class PokemonService {
 
   async getPokemonNames(){
     const res = await api.get('api/pokemon/poke')
-    console.log(res.data);
+    // console.log(res.data);
+    AppState.pokemonName = res.data.map(p=> p)
+    // console.log(AppState.pokemonName);
   }
   async getPokemonDetails(id) {
     const res = await pokeAPI.get(`pokemon/${id}`);

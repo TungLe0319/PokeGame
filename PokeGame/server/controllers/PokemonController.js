@@ -20,7 +20,8 @@ export class PokemonController extends BaseController {
   }
   async getPokemonNames(req, res, next) {
     try {
-      //await
+      const pokeNames = await pokemonService.getPokemonNames()
+      res.send(pokeNames)
     } catch (error) {
       next(error);
     }
