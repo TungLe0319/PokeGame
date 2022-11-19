@@ -12,7 +12,10 @@
       </div>
       <div class="col-md-1">
         <router-link :to="{name: 'Guess', params:{ }}"> 
-        <button class="btn btn-danger"> Play GuessWho </button>
+        <button class="btn border-0 ">
+          Play Guess Who!
+          <img src="https://cdn-icons-png.flaticon.com/512/7887/7887104.png" alt="" width="80" height="80"> </button>
+  
         </router-link>
       </div>
     </div>
