@@ -7,7 +7,7 @@ export class PokemonDetail {
     this.abilities = data.abilities;
     this.forms = data.forms;
     this.species = data.species;
-    this.moves=data.moves
+    this.moves = data.moves
   
     this.types = data.types;
     for (const type of this.types) {

@@ -1,12 +1,14 @@
 import BaseController from "../utils/BaseController";
 import { Auth0Provider } from "@bcwdev/auth0provider";
+import { pokemonService } from "../services/PokemonService";
 
 export class PokemonController extends BaseController {
   constructor() {
-    super("api/pokemon");
+    super("api");
     this.router
-    .get("", this.getPokemon)
-     .get("", this.getPokemonNames);
+    .get("/pokemon", this.getPokemon)
+     .get("/poke", this.getPokemonNames)
+     .post('/poke',  this.addPokes)
   }
 
   async getPokemon(req, res, next) {
@@ -23,4 +25,13 @@ export class PokemonController extends BaseController {
       next(error);
     }
   }
+  async addPokes(req, res, next){
+   try{
+     const pokes = await pokemonService.addPokes(req.body)
+  res.send(pokes)
+   }
+   catch (error) {
+   next(error)
+   }
+   }
 }
