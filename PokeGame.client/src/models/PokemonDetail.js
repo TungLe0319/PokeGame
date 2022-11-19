@@ -65,5 +65,6 @@ export class PokemonDetail {
     // this.abilityImg = 
     this.evolutions=data.evolutions
     this.sprites=data.sprites
+    
   }
 }

@@ -20,6 +20,7 @@
 <script>
 import { computed } from "@vue/reactivity";
 import { onMounted, watchEffect } from "vue";
+import { useRoute } from "vue-router";
 import { AppState } from "../AppState.js";
 import PokeList from "../components/PokeList.vue";
 import PokemonDetails from "../components/PokemonDetails.vue";
@@ -29,8 +30,17 @@ import Pop from "../utils/Pop.js";
 
 export default {
   setup() {
+async  function getPokemonSpecies() {
+  try {
+      await pokemonService.getPokemonSpecies(route.params.name) 
+    } catch (error) {
+      Pop.error(error,'[getPokemonSpecies]')
+    }
+}
+
     onMounted(() => {
-      getAllPokemon();
+      // getAllPokemon();
+      getPokemonSpecies()
     
     });
     async function getAllPokemon() {
@@ -40,12 +50,15 @@ export default {
         Pop.error(error, "[getAllPokemon]");
       }
     }
+
   watchEffect(()=>{
     if (!AppState.activePokemon) {
       router.push("/")
     }
   })
+  const route = useRoute()
     return {
+      route,
       pokemon: computed(() => AppState.pokemon),
       details: computed(() => AppState.activePokemon),
       

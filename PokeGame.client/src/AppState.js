@@ -16,5 +16,7 @@ export const AppState = reactive({
   /** @type {import('./models/PokemonDetail.js').PokemonDetail | null} */
   activePokemon: null,
 
+  pokemonSpecies:{},
+
   reveal:0
 });

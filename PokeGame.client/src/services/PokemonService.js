@@ -1,6 +1,7 @@
 import { AppState } from "../AppState.js";
 import { Pokemon } from "../models/Pokemon.js";
 import { PokemonDetail } from "../models/PokemonDetail.js";
+import { router } from "../router.js";
 import { api, pokeAPI } from "./AxiosService.js";
 
 class PokemonService {
@@ -47,23 +48,10 @@ class PokemonService {
   }
 
   async searchByQuery(name){
-    console.log(name);
-    // AppState.pokemon = []
-        const res = await pokeAPI.get(`pokemon`,{
-          params:{
-            limit:10
-          }
-        });
-        console.log(res.data);
-
-        // AppState.activePokemon = new PokemonDetail(res.data)
-        // console.log(AppState.activePokemon);
-        // let pokemons = res.data.results.map((p) => new Pokemon(p));
-// AppState.pokemon = new PokemonDetail(res.data)
-        // for (const poke of pokemons) {
-        //   const pokemon = await this.getPokemon(poke.id);
-        //   AppState.pokemon.push(pokemon);
-        // }
+    const res = await pokeAPI.get(`pokemon/${name}`);
+    AppState.activePokemon = new PokemonDetail(res.data)
+    // router.push({name:'Details',params:{name: name}})
+  
   }
 
   async getRandomPokemon(){
@@ -74,6 +62,12 @@ class PokemonService {
     //  console.log(AppState.activePokemon);
     AppState.activePokemon = new PokemonDetail(res.data);
     // console.log(AppState.activePokemon);
+  }
+ async getPokemonSpecies(name){
+ const res = await pokeAPI.get(`pokemon-species/${name}`)
+//  console.log(res.data);
+ AppState.pokemonSpecies = res.data
+ console.log(AppState.pokemonSpecies);
   }
 }
 export const pokemonService = new PokemonService();

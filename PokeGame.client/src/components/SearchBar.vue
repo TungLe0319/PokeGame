@@ -57,7 +57,9 @@
 
 <script>
 import { computed } from "@vue/reactivity";
+
 import { onMounted, ref, watchEffect } from "vue";
+import { useRouter } from "vue-router";
 import { AppState } from "../AppState.js";
 import { pokemonService } from "../services/PokemonService.js";
 import { logger } from "../utils/Logger.js";
@@ -66,12 +68,13 @@ import Pop from "../utils/Pop.js";
 export default {
   props: {},
   setup(props) {
-    const editable = ref({});
+    let editable = ref({});
 
     onMounted(() => {});
     watchEffect(() => {});
-
+const router = useRouter()
     return {
+      router,
       editable,
       names: computed(() =>
         AppState.pokemonName.filter((p) =>
@@ -85,12 +88,12 @@ pokemon: computed(() =>
       ),
       async searchByQuery() {
         try {
-          // console.log(editable.value);
-          // await  pokemonService.searchByQuery(editable.value);
-          // editable = {}
-          // AppState.pokemonName.filter(p=> p.name == editable.value)
+          await  pokemonService.searchByQuery(editable.value.term);
+          router.push({name:"Details",params:{name : editable.value.term}})
+         editable = {}
+       
         } catch (error) {
-          // Pop.error( "Refine Your Search");
+          Pop.error(error, "Refine Your Search");
         }
       },
       replaceTerm(name) {
