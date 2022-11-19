@@ -1,5 +1,6 @@
 <template>
-  <div
+  <router-link :to="{name: 'Details', params:{name:pokemon?.name }}"> 
+   <div
     :class="(active ? 'active' : pokemon.types[0].color )"
     class="my-2 hover selectable card elevation-5 rounded-4 p-2 border-0"
     @click="getDetails(pokemon)"
@@ -32,6 +33,8 @@
    
    
   </div>
+  </router-link>
+ 
 </template>
 
 <script>

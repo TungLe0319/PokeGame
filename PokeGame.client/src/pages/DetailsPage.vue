@@ -6,18 +6,10 @@
   </div>
 </div>
 
-<SearchBar/>
 
-    <div class="row mt-3 ms-3 justify-content-center">
+    <div class="row mt-3 justify-content-center">
 
-      <div class="col-md-4 px-0  ">
-   
-        <div class="row px-3 scrollY">
-          <div class="col-md-12" v-for="p in pokemon" :key="p.id">
-            <PokeList :pokemon="p" />
-          </div>
-        </div>
-      </div>
+  
       <div class="col-md-6 d-flex justify-content-center align-items-center ">
         <PokemonDetails :pokemon="details"/>
       </div>
@@ -27,10 +19,11 @@
 
 <script>
 import { computed } from "@vue/reactivity";
-import { onMounted } from "vue";
+import { onMounted, watchEffect } from "vue";
 import { AppState } from "../AppState.js";
 import PokeList from "../components/PokeList.vue";
 import PokemonDetails from "../components/PokemonDetails.vue";
+import { router } from "../router.js";
 import { pokemonService } from "../services/PokemonService.js";
 import Pop from "../utils/Pop.js";
 
@@ -47,7 +40,11 @@ export default {
         Pop.error(error, "[getAllPokemon]");
       }
     }
-  
+  watchEffect(()=>{
+    if (!AppState.activePokemon) {
+      router.push("/")
+    }
+  })
     return {
       pokemon: computed(() => AppState.pokemon),
       details: computed(() => AppState.activePokemon),

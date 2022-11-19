@@ -40,12 +40,14 @@ class PokemonService {
   async searchByQuery(name){
     console.log(name);
     // AppState.pokemon = []
-        const res = await pokeAPI.get(`pokemon/${name}`,{
+        const res = await pokeAPI.get(`pokemon`,{
           params:{
+            limit:10
           }
         });
         console.log(res.data);
-        AppState.activePokemon = new PokemonDetail(res.data)
+        
+        // AppState.activePokemon = new PokemonDetail(res.data)
         // console.log(AppState.activePokemon);
         // let pokemons = res.data.results.map((p) => new Pokemon(p));
 // AppState.pokemon = new PokemonDetail(res.data)
