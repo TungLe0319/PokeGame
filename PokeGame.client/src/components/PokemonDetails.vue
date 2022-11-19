@@ -79,7 +79,7 @@
       </div>
   </div>
   <div class="tab-pane fade" id="ability-tab-pane" role="tabpanel" aria-labelledby="ability-tab" tabindex="0">
-    <div class="card-body">
+    <div class="card-body scrollY">
         <ul class="list-group border-0 mt-2">
           <li v-for="i in pokemon?.moves" class="list-group-item">
             <b>{{ i.move.name }}</b>
@@ -300,6 +300,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.scrollY{
+  height: 350px;
+  overflow-y: auto;
+}
 .pokemonImg {
   position: absolute;
   top: -120px;
