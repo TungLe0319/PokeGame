@@ -1,13 +1,13 @@
 import { AppState } from "../AppState.js";
 import { Pokemon } from "../models/Pokemon.js";
 import { PokemonDetail } from "../models/PokemonDetail.js";
-import { pokeAPI } from "./AxiosService.js";
+import { api, pokeAPI } from "./AxiosService.js";
 
 class PokemonService {
   async getAllPokemon() {
     const res = await pokeAPI.get("pokemon", {
       params: {
-        limit: 5,
+        limit: 2,
       },
     });
     // console.log(res.data.results);
@@ -17,7 +17,10 @@ class PokemonService {
     //   const pokes = await this.getPokemon(poke.id)
     // })
     for (const poke of pokemons) {
-      const pokemon = await this.getPokemon(poke.id);
+      // const pokemon = await api.post('api/pokemon/poke', poke
+      // )
+      // console.log(pokemon);
+      const pokemon = await this.getPokemon(poke.pokeId);
       // console.log(pokemon);
       AppState.pokemon.push(pokemon);
     }
@@ -25,13 +28,17 @@ class PokemonService {
   }
   async getPokemon(id) {
     const res = await pokeAPI.get(`pokemon/${id}`);
-    console.log(res.data);
+    // console.log(res.data);
     return new PokemonDetail(res.data);
   }
 
+  async getPokemonNames(){
+    const res = await api.get('api/pokemon/poke')
+    console.log(res.data);
+  }
   async getPokemonDetails(id) {
     const res = await pokeAPI.get(`pokemon/${id}`);
-    console.log("[activePokemon]", res.data);
+    // console.log("[activePokemon]", res.data);
     //  console.log(AppState.activePokemon);
     AppState.activePokemon = new PokemonDetail(res.data);
     // console.log(AppState.activePokemon);
@@ -46,7 +53,7 @@ class PokemonService {
           }
         });
         console.log(res.data);
-        
+
         // AppState.activePokemon = new PokemonDetail(res.data)
         // console.log(AppState.activePokemon);
         // let pokemons = res.data.results.map((p) => new Pokemon(p));

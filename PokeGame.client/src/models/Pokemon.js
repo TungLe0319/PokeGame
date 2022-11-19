@@ -3,7 +3,7 @@ import { pokemonService } from "../services/PokemonService.js";
 
 export class Pokemon {
   constructor(data) {
-    this.id = data.url
+    this.pokeId = data.url
       .replace("https://pokeapi.co/api/v2/pokemon/", "")
       .replace("/", "");
     this.name = data.name;

@@ -4,9 +4,9 @@ import { pokemonService } from "../services/PokemonService";
 
 export class PokemonController extends BaseController {
   constructor() {
-    super("api");
+    super("api/pokemon");
     this.router
-    .get("/pokemon", this.getPokemon)
+    .get("", this.getPokemon)
      .get("/poke", this.getPokemonNames)
      .post('/poke',  this.addPokes)
   }

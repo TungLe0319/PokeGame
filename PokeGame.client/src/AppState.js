@@ -11,7 +11,7 @@ export const AppState = reactive({
   pokemon: [],
 
   
-  
+  pokemonName:[],
   
   /** @type {import('./models/PokemonDetail.js').PokemonDetail | null} */
   activePokemon: null,

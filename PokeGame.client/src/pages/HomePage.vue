@@ -43,6 +43,7 @@ export default {
     async function getAllPokemon() {
       try {
         await pokemonService.getAllPokemon();
+        // await pokemonService.getPokemonNames();
       } catch (error) {
         Pop.error(error, "[getAllPokemon]");
       }
