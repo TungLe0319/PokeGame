@@ -10,7 +10,7 @@
 
     <div class="row mt-3 ms-3 justify-content-center">
 
-      <div class="col-md-4 px-0  ">
+      <div class="col-md-6 px-0  ">
    
         <div class="row px-3 scrollY">
           <div class="col-md-12" v-for="p in pokemon" :key="p.id">
@@ -18,9 +18,9 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 d-flex justify-content-center align-items-center ">
+      <!-- <div class="col-md-6 d-flex justify-content-center align-items-center ">
         <PokemonDetails :pokemon="details"/>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
