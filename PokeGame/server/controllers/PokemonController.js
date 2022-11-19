@@ -5,16 +5,22 @@ export class PokemonController extends BaseController {
   constructor() {
     super("api/pokemon");
     this.router
-      .get("", this.getAll)
-
+    .get("", this.getPokemon)
+     .get("", this.getPokemonNames);
   }
 
-  async getAll(req, res, next) {
+  async getPokemon(req, res, next) {
     try {
-      return res.send(["value1", "value2"]);
+      return res.send();
     } catch (error) {
       next(error);
     }
   }
-
+  async getPokemonNames(req, res, next) {
+    try {
+      //await
+    } catch (error) {
+      next(error);
+    }
+  }
 }
