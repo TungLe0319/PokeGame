@@ -7,7 +7,6 @@ export class PokemonController extends BaseController {
     this.router
       .get("", this.getAll)
 
-      .post("", this.create);
   }
 
   async getAll(req, res, next) {
@@ -18,12 +17,4 @@ export class PokemonController extends BaseController {
     }
   }
 
-  async create(req, res, next) {
-    try {
-      req.body.creatorId = req.userInfo.id;
-      res.send(req.body);
-    } catch (error) {
-      next(error);
-    }
-  }
 }
