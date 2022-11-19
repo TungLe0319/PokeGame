@@ -32,17 +32,7 @@
           <span class="badge rounded-pill text-dark">
             Height: {{ pokemon.height }}</span
           >
-          
-          <span class="badge rounded-pill text-dark">
-            Base-Happiness: {{ species?.base_happiness }}</span
-          >
-          
-          <span class="badge rounded-pill text-dark">
-            Capture-Rate: {{ species.capture_rate }}</span
-          >
-          <span class="badge rounded-pill text-dark">
-            Habitat: {{ species.habitat.name}}</span
-          >
+        
           
         </div>
      
@@ -168,7 +158,6 @@ export default {
       editable,
       bar: computed(() => props?.pokemon?.stats?.map((s) => s.base_stat)),
       pokemon: computed(() => AppState.activePokemon),
-      species:computed(() => AppState.pokemonSpecies),
       img: computed(
         () =>
           AppState.activePokemon?.sprites.other["official-artwork"]

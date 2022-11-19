@@ -71,7 +71,9 @@ export default {
     let editable = ref({});
 
     onMounted(() => {});
-    watchEffect(() => {});
+    watchEffect(() => {
+   
+    });
 const router = useRouter()
     return {
       router,
@@ -81,11 +83,7 @@ const router = useRouter()
           p.name.toLowerCase().includes(editable.value.term)
         )
       ),
-pokemon: computed(() =>
-        AppState.pokemonName.filter((p) =>
-          p.name.toLowerCase().includes(editable.value.term)
-        )
-      ),
+  
       async searchByQuery() {
         try {
           await  pokemonService.searchByQuery(editable.value.term);

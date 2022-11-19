@@ -45,6 +45,7 @@
 <script>
 import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
+
 import { pokemonService } from "../services/PokemonService.js"
 import Pop from "../utils/Pop.js"
 export default {

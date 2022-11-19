@@ -7,7 +7,8 @@ export const AppState = reactive({
   account: {},
 
   // /** @type {import('./models/Pokemon.js').Pokemon[]} */
-  /** @type {import('./models/PokemonDetail.js').PokemonDetail[]} */
+  // /** @type {import('./models/PokemonDetail.js').PokemonDetail[]} */
+  /** @type {import('./models/Pokemon.js').Pokemon[]} */
   pokemon: [],
 
   
@@ -18,5 +19,8 @@ export const AppState = reactive({
 
   pokemonSpecies:{},
 
-  reveal:0
+  reveal:0,
+
+
+  offset:0
 });

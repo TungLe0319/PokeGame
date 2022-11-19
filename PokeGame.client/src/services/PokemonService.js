@@ -6,26 +6,20 @@ import { api, pokeAPI } from "./AxiosService.js";
 
 class PokemonService {
   async getAllPokemon() {
-    const res = await pokeAPI.get("pokemon", {
-      params: {
-        limit: 50,
-      },
-    });
-    // console.log(res.data.results);
-    let pokemons = res.data.results.map((p) => new Pokemon(p));
+    const res = await api.get("api/pokemon/poke");
+  
+    AppState.pokemon= res.data.map((p) => new Pokemon(p));
 
-    // pokemons.forEach(async(poke) => {
-    //   const pokes = await this.getPokemon(poke.id)
-    // })
-    for (const poke of pokemons) {
-      // const pokemon = await api.post('api/pokemon/poke', poke
-      // )
-      // console.log(pokemon);
-      const pokemon = await this.getPokemon(poke.pokeId);
-      // console.log(pokemon);
-      AppState.pokemon.push(pokemon);
-    }
+   console.log(AppState.pokemon);
 
+    // for (const poke of pokemons){
+    //   const pokemon = await this.getPokemon(poke.id)
+    //   // console.log(pokemon.types);
+    // poke.types = pokemon.types
+    // console.log(poke);
+    // const sentPokemon = await api.post(`api/pokemon/poke`,poke)
+    // console.log(sentPokemon.data);
+    // }
   }
   async getPokemon(id) {
     const res = await pokeAPI.get(`pokemon/${id}`);
@@ -34,21 +28,24 @@ class PokemonService {
   }
 
   async getPokemonNames(){
-    const res = await api.get('api/pokemon/poke')
-    console.log(res.data);
-    AppState.pokemonName = res.data.map(p=> p)
+    // const res = await api.get('api/pokemon/poke')
+    // console.log(res.data);
+    // AppState.pokemon = res.data.map(p=> p)
     // console.log(AppState.pokemonName);
   }
-  async getPokemonDetails(id) {
-    const res = await pokeAPI.get(`pokemon/${id}`);
-    // console.log("[activePokemon]", res.data);
-    //  console.log(AppState.activePokemon);
+  async getPokemonDetails(name) {
+    const res = await pokeAPI.get(`pokemon/${name}`);
+ 
     AppState.activePokemon = new PokemonDetail(res.data);
-    // console.log(AppState.activePokemon);
+
   }
 
   async searchByQuery(name){
+    
     const res = await pokeAPI.get(`pokemon/${name}`);
+
+
+
     AppState.activePokemon = new PokemonDetail(res.data)
     // router.push({name:'Details',params:{name: name}})
   
