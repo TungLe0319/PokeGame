@@ -19,6 +19,13 @@
       </div>
       <div class="col-md-2 ms-5">
        <h5 class="rounded p-1 bg-light text-center"> Take a Guess</h5>
+       <ul class="list-group">
+        <li class="list-group-item" v-for="n in names" >
+      <button class="btn border-0 text-dark" @click="revealPokemon(n)">
+  {{n}}
+      </button>
+        </li>
+       </ul>
       </div>
   </div>
 </div>
@@ -43,13 +50,14 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { AppState } from '../AppState'
 
 import { pokemonService } from "../services/PokemonService.js"
 import Pop from "../utils/Pop.js"
 export default {
   setup() {
+
 onMounted(()=> {
   // getRandomPokemon()
 })
@@ -61,9 +69,16 @@ try {
   }
     }
     return {
+      
       pokemon: computed(() => AppState.activePokemon),
       account: computed(() => AppState.account),
       revealed: computed(() => AppState.reveal),
+      names : computed(() => {
+       let x = AppState.pokemon.map(p=> p.name).sort(()=>Math.random() -0.5) 
+    x.splice(3,x.length)
+x.push(AppState.activePokemon?.name)
+return x
+    }),
       
 async getRandomPokemon1(){
   try {
@@ -74,15 +89,17 @@ async getRandomPokemon1(){
       Pop.error(error,'[]')
     }
 },
-revealPokemon(){
-AppState.reveal =1
+revealPokemon(x){
+  if (x == AppState.activePokemon.name) {
+   AppState.reveal =1
    Pop.toast('Next Pokemon in...','warning','top-end',4000)
 setTimeout(() => {
    this.getRandomPokemon1()
   AppState.activePokemon=null
 }, 4000);
 
-//  this.getRandomPokemon1()
+  }
+
 }
 
     }
