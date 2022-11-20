@@ -2,15 +2,15 @@
   <router-link :to="{name: 'Details', params:{name:pokemon?.name }}"> 
    <div
     :class="(active ? 'active' : pokemon.types[0].color )"
-    class="my-2 hover selectable card elevation-5 rounded-4 p-2 border-0"
-    @click="getDetails(pokemon)"
+    class="my-2 hover selectable card  rounded-4 p-2 border-0 "
+ 
   >
     <!-- <h6 class="ms-2">#{{ pokemon.id }}</h6> -->
     <div class="row">
       <div class="col-md-8">
- <h4 class="mb-2 d-flex align-items-center ms-2  fw-bold">
+ <h6 class="mb-2 d-flex align-items-center ms-2 fw-bold">
       {{ pokemon?.name }}
-    </h4>
+    </h6>
     <div class="d-flex justify-content-around">
       <p
         class="p-1 px-2 elevation-4  rounded-4 text-center text-light fw-bold "
@@ -22,10 +22,10 @@
     </div>
 
       </div>
-      <div class="col-md-4 d-flex align-items-center justify-content-center ">
- <div class="d-flex justify-content-end pokeBg">
+      <div class="col-md-4 d-flex align-items-center justify-content-center  ">
+ <div class="d-flex justify-content-end ">
 
-      <img :src="pokemon?.img" alt="" width="100" height="100" @error="altImg()" />
+      <img :src="pokemon?.img" alt="" width="100" height="100" @error="altImg()"  class="" />
 
     </div>
       </div>
@@ -90,9 +90,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .pokeBg{
 
-  backdrop-filter: 40px;
 
 }
 .active{
@@ -107,16 +107,20 @@ box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px
 .test2 {
   background-color: v-bind(color23);
 }
+
+//   background-image: url(https://cdn-icons-png.flaticon.com/512/361/361998.png);
 .hover {
-    background-image: url(https://cdn-icons-png.flaticon.com/512/361/361998.png);
+ 
   background-size: 100px;
-  background-position: 385px;
+background-position: -30%;
   background-repeat: no-repeat;
   
   transition: all 0.25s ease;
   padding: 3px;
   border-radius: 4px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+
 }
 .hover:hover {
   transform: scale(1.01);
@@ -125,5 +129,13 @@ box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px
   filter: brightness(120%);
   background-color: rgba(128, 128, 128, 0.425);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+
+  img{
+    transform: scale(1.50);
+    transition: all 0.15s ease;
+    z-index: 1 !important;
+
+  }
 }
 </style>

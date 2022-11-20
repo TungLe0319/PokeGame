@@ -1,12 +1,11 @@
 <template>
   <div class="card mt-2 rounded-4 position-relative w-100 p-3" v-if="pokemon">
-    <div class="pokemonImg">
+    <div class="pokemonImgDiv">
       <img
         :src="pokemon?.img"
         alt=""
-        height="250"
-        width="250"
-        class="animate__animated animate__fadeIn"
+
+        class="animate__animated animate__fadeIn pokemonImg"
       />
     </div>
 
@@ -173,13 +172,25 @@ export default {
   height: 350px;
   overflow-y: auto;
 }
-.pokemonImg {
+.pokemonImgDiv {
   position: absolute;
-  top: -120px;
-  right: -85px;
+  top: -200px;
+  right: 05px;
   z-index: 9;
+.pokemonImg{
+  width: 300px;
+  height: 300px;
+}
 }
 .test {
   width: v-bind(bar);
+}
+
+//when screen is 768px OR LESS
+@media only screen and (max-width: 768px){
+.pokemonImg{
+  width: 20px;
+height:45px
+}
 }
 </style>

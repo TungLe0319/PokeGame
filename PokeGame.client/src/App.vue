@@ -41,6 +41,7 @@ export default {
   background-size: 70%;
   background-position: right;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 
 
 }
