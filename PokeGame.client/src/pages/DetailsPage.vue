@@ -9,7 +9,7 @@
 
   
       <div class="col-md-12 d-flex justify-content-center align-items-center mt-5 ">
-        <PokemonDetailsV2 :pokemon="details"/>
+        <PokemonDetailsV2 />
       </div>
 
 </div>
@@ -37,6 +37,10 @@ export default {
     onMounted(() => {
  
  getPokemonDetails()
+ getPokemonSpecies()
+    getPokemonForms()
+    getPokemonGrowthRate()
+    getPokemonEvolutions()
     
     });
     async function getPokemonDetails() {
@@ -49,14 +53,14 @@ export default {
     }
 async function getPokemonSpecies(){
   try {
-      await pokemonService.getPokemonSpecies()
+      await pokemonService.getPokemonSpecies(route.params.id)
     } catch (error) {
       Pop.error(error,'[getPokemonSpecies]')
     }
 }
 async function getPokemonForms(){
 try {
-    await pokemonService.getPokemonForms()
+    await pokemonService.getPokemonForms(route.params.id)
   } catch (error) {
     Pop.error(error,'[getPokemonForms]')
   }
@@ -64,20 +68,27 @@ try {
 
 async function getPokemonGrowthRate(){
   try {
-      await pokemonService.getPokemonGrowthRate()
+      await pokemonService.getPokemonGrowthRate(route.params.id)
     } catch (error) {
       Pop.error(error,'[getPokemonGrowthRate]')
     }
 }
-  watchEffect(()=>{
-    if (!AppState.activePokemon) {
-      router.push("/")
+async function getPokemonEvolutions(){
+  try {
+      await pokemonService.getPokemonEvolutions(route.params.id)
+    } catch (error) {
+      Pop.error(error,'[getPokemonEvolutions]')
     }
+}
+  watchEffect(()=>{
+    // if (!AppState.activePokemon) {
+    //   router.push("/")
+    // }
   })
   const route = useRoute()
     return {
       route,
-      pokemon: computed(() => AppState.pokemon),
+      pokemons: computed(() => AppState.pokemon),
       details: computed(() => AppState.activePokemon),
       
     };

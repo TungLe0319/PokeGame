@@ -33,8 +33,8 @@ class PokemonService {
     // AppState.pokemon = res.data.map(p=> p)
     // console.log(AppState.pokemonName);
   }
-  async getPokemonDetails(name) {
-    const res = await pokeAPI.get(`pokemon/${name}`);
+  async getPokemonDetails(id) {
+    const res = await pokeAPI.get(`pokemon/${id}`);
  
     AppState.activePokemon = new PokemonDetail(res.data);
 
@@ -60,11 +60,31 @@ class PokemonService {
     AppState.activePokemon = new PokemonDetail(res.data);
     // console.log(AppState.activePokemon);
   }
- async getPokemonSpecies(name){
- const res = await pokeAPI.get(`pokemon-species/${name}`)
+ async getPokemonSpecies(id){
+ const res = await pokeAPI.get(`pokemon-species/${id}`)
 //  console.log(res.data);
  AppState.pokemonSpecies = res.data
  console.log(AppState.pokemonSpecies);
   }
+ async getPokemonForms(id){
+ const res = await pokeAPI.get(`pokemon-form/${id}`)
+//  console.log(res.data);
+ AppState.pokemonForms = res.data
+ console.log(AppState.pokemonForms);
+  }
+ async getPokemonGrowthRate(id){
+ const res = await pokeAPI.get(`growth-rate/${id}`)
+//  console.log(res.data);
+ AppState.pokemonGrowthRate = res.data
+ console.log(AppState.pokemonGrowthRate);
+  }
+ async getPokemonEvolutions(id){
+ const res = await pokeAPI.get(`evolution-chain/${id}`)
+ console.log(res.data);
+ AppState.pokemonEvolution = res.data
+//  console.log(AppState.pokemonEvolution);
+  }
+
+
 }
 export const pokemonService = new PokemonService();

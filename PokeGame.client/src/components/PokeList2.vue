@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{name: 'Details', params:{id:pokemon?.id }}"> 
+  <router-link :to="{name: 'Details', params:{id:pokemon?.id }}" @click="getDetails()"> 
    <div
     :class="(active ? 'active' : pokemon.types[0].color )"
     class="my-2 hover selectable card  rounded-4 p-2 border-0 "
@@ -50,7 +50,7 @@ import Pop from "../utils/Pop.js";
 
 export default {
   props: {
-    pokemon: { type: Pokemon },
+    pokemon: { type: Pokemon,required:true },
   },
   setup(props) {
     const editable = ref({});
@@ -74,7 +74,7 @@ export default {
       ),
       async getDetails(pokemon) {
         try {
-          // AppState.activePokemon = pokemon;
+ 
           // let id = props.pokemon.id;
           // await pokemonService.getPokemonDetails(id);
         } catch (error) {

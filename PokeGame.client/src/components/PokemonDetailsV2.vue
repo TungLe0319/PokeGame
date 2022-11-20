@@ -87,7 +87,28 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2 class="rounded p-1 "> Evolution Chain</h2>
+      </div>
+      <div class="col-md-4">
+        {{evolutions.chain.species.name}}
+        
+      </div>
+     
+      <div class="col-md-4">
+        {{evolutions.chain.evolves_to[0].species.name}}
+      
+      </div>
+     
+      <div class="col-md-4">
+        {{evolutions.chain.evolves_to[0].evolves_to[0].species.name}}
+      </div>
+    </div>
   </div>
+
+
 </template>
 
 <script>
@@ -110,6 +131,9 @@ export default {
       editable,
       bar: computed(() => props?.pokemon?.stats?.map((s) => s.base_stat)),
       pokemon: computed(() => AppState.activePokemon),
+      evolutions:computed(() => AppState.pokemonEvolution),
+      growth:computed(() => AppState.pokemonGrowthRate),
+      forms:computed(() => AppState.pokemonForms),
       img: computed(
         () =>
           AppState.activePokemon?.sprites.other["official-artwork"]
