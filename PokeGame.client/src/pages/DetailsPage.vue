@@ -8,8 +8,8 @@
  
 
   
-      <div class="col-md-10 d-flex justify-content-center align-items-center mt-5 ">
-        <PokemonDetails :pokemon="details"/>
+      <div class="col-md-12 d-flex justify-content-center align-items-center mt-5 ">
+        <PokemonDetailsV2 :pokemon="details"/>
       </div>
 
 </div>
@@ -25,6 +25,7 @@ import { useRoute } from "vue-router";
 import { AppState } from "../AppState.js";
 import PokeList from "../components/PokeList.vue";
 import PokemonDetails from "../components/PokemonDetails.vue";
+import PokemonDetailsV2 from "../components/PokemonDetailsV2.vue";
 import { router } from "../router.js";
 import { pokemonService } from "../services/PokemonService.js";
 import Pop from "../utils/Pop.js";
@@ -40,12 +41,34 @@ export default {
     });
     async function getPokemonDetails() {
       try {
-        await pokemonService.getPokemonDetails(route.params.name);
+        await pokemonService.getPokemonDetails(route.params.id);
+        
       } catch (error) {
         Pop.error(error, "[getAllPokemon]");
       }
     }
+async function getPokemonSpecies(){
+  try {
+      await pokemonService.getPokemonSpecies()
+    } catch (error) {
+      Pop.error(error,'[getPokemonSpecies]')
+    }
+}
+async function getPokemonForms(){
+try {
+    await pokemonService.getPokemonForms()
+  } catch (error) {
+    Pop.error(error,'[getPokemonForms]')
+  }
+}
 
+async function getPokemonGrowthRate(){
+  try {
+      await pokemonService.getPokemonGrowthRate()
+    } catch (error) {
+      Pop.error(error,'[getPokemonGrowthRate]')
+    }
+}
   watchEffect(()=>{
     if (!AppState.activePokemon) {
       router.push("/")

@@ -1,7 +1,7 @@
 <template>
-  <!-- <header>
+  <header>
     <Navbar />
-  </header> -->
+  </header>
   <main 
   :class="route.name == 'Guess'? 'guess':'',route.name == 'Home'? 'pokemon' : ''"
   class="pokemon">

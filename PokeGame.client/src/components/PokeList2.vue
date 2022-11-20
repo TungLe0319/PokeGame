@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{name: 'Details', params:{name:pokemon?.name }}"> 
+  <router-link :to="{name: 'Details', params:{id:pokemon?.id }}"> 
    <div
     :class="(active ? 'active' : pokemon.types[0].color )"
     class="my-2 hover selectable card  rounded-4 p-2 border-0 "
